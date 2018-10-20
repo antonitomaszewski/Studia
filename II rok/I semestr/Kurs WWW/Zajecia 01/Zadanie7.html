@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<!-- <head>
+  <base href = "file:///C:/Users/Wink%20Wink/Desktop/WWW/Zajecia 01/" >
+</head> -->
+
+<body>
+
+  <h1 align="center"> Konto Bankowe </h1>
+
+  <!-- action="/nazwapliku.typ" -->
+  <form action="koloikwadrat.jpg" class="kontobankowe" target="_blank" method="get" align="left">
+
+    <p class="kontobankowe" align= "center">
+      <label for="number" align="left">
+        Numer Konta:
+      </label>
+      <input type="number" name="accountnumber" id="accountnumber" value="1" align="right" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="name">
+        Imię:
+      </label>
+      <input type="text" name="firstname" id="firstname" value="A" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="name">
+        Nazwisko:
+      </label>
+      <input type="text" name="secondname" id="secondname" value="B" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="email">
+        Adres email:
+      </label>
+      <input type="email" name="email" id="email" value="A@B.ab" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="adress">
+        Adres:
+      </label>
+      <input type="adress" name="adress" id="adress" value="ul. Poprostu 17" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="zip">
+        Kod Pocztowy:
+      </label>
+      <input type="text" name="zip" id="zip" pattern="[0-9, -]{6}" value="12-321" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="city">
+        Miasto:
+      </label>
+      <input type="text" name="city" id="city" pattern="[A-z]*" value="Wroclaw" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="money">
+        Kwota przelewu:
+      </label>
+      <input type="number" name="money" id="money" value="12321" required>
+    </p>
+
+    <p class="kontobankowe">
+      <label for="date">
+        Data przelewu:
+      </label>
+      <input type="date" name="data" id="data" value="12.07.2009" required>
+    </p>
+
+
+    <input type="submit" value="Potwierdź przelew">
+  </form>
