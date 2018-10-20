@@ -1,0 +1,10 @@
+#lang typed/racket
+
+(: filter_moj (All (A) (-> (-> A Boolean) (Listof A) (Listof A))))
+(define (filter_moj p? Xs)
+  (if (null? Xs)
+      null
+      (if (p? (car Xs))
+          (cons (car Xs) (filter_moj p? (cdr Xs)))
+          (filter_moj p? (cdr Xs)))))
+(filter_moj positive? '( 1 2 -1 -2 0 4 -10))

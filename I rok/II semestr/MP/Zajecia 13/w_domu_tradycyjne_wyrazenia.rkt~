@@ -1,0 +1,8 @@
+#lang racket
+
+(require racklog)
+(define %member
+  (%rel (x y xs)
+    [(x (cons x xs))]
+    [(x (cons y xs))
+      (%member x xs)]))

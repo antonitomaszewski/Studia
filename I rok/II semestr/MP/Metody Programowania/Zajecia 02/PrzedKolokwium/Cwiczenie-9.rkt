@@ -1,0 +1,22 @@
+#lang racket
+(define (identity x) x)
+(define (compose f1 f2)
+  (lambda (x) (f1 (f2 x))))
+(define (repeated f n)
+  (if (= n 0)
+      identity
+      (compose (repeated f (- n 1)) f)))
+(define (build n d b)
+  (/ n (+ d b)))
+(define (repeated-build k n d b)
+  (define (iter val i)
+    (if (= i k)
+        val
+        (iter (build n d val) (+ i 1))))
+  (iter b 0))
+(repeated-build 100 1.0 1 0)
+(define (repeated-build-01 k n d b)
+  ((repeated build k) (build n d b)) n d)
+;(repeated-build-01 100 1 1 0)
+(define (repeated-build-02 k n d b)
+  ((repeated (lambda (x) (build n d x)) k) (build n d b)))

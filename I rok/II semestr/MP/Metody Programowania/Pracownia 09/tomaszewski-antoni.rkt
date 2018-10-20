@@ -1,0 +1,289 @@
+#lang racket
+
+;; pomocnicza funkcja dla list tagowanych o określonej długości
+
+(define (tagged-tuple? tag len p)
+  (and (list? p)
+       (= (length p) len)
+       (eq? (car p) tag)))
+
+(define (tagged-list? tag p)
+  (and (pair? p)
+       (eq? (car p) tag)
+       (list? (cdr p))))
+
+;;
+;; WHILE
+;;
+
+; memory
+
+(define empty-mem
+  null)
+
+(define (set-mem x v m)
+  (cond [(null? m)
+         (list (cons x v))]
+        [(eq? x (caar m))
+         (cons (cons x v) (cdr m))]
+        [else
+         (cons (car m) (set-mem x v (cdr m)))]))
+
+(define (get-mem x m)
+  (cond [(null? m) 0]
+        [(eq? x (caar m)) (cdar m)]
+        [else (get-mem x (cdr m))]))
+
+; arith and bool expressions: syntax and semantics
+
+(define (const? t)
+  (number? t))
+
+(define (true? t)
+  (eq? t 'true))
+
+(define (false? t)
+  (eq? t 'false))
+
+(define (op? t)
+  (and (list? t)
+       (member (car t) '(+ - * / = > >= < <= not and or mod rand rand1 car cdr))))
+
+(define (op-op e)
+  (car e))
+
+(define (op-args e)
+  (cdr e))
+
+(define (op->proc op)
+  (cond [(eq? op '+) +]
+        [(eq? op '*) *]
+        [(eq? op '-) -]
+        [(eq? op '/) /]
+        [(eq? op '=) =]
+        [(eq? op '>) >]
+        [(eq? op '>=) >=]
+        [(eq? op '<)  <]
+        [(eq? op '<=) <=]
+        [(eq? op 'not) not]
+        [(eq? op 'and) (lambda x (andmap identity x))]
+        [(eq? op 'or) (lambda x (ormap identity x))]
+        [(eq? op 'mod) modulo]
+        [(eq? op 'rand) (lambda (max) (min max 4))]
+        [(eq? op 'rand1) (lambda (x y) (rand x y))]
+        [(eq? op 'car) car]
+        [(eq? op 'cdr) cdr]
+        )) ; chosen by fair dice roll.
+; guaranteed to be random.
+
+(define (var? t)
+  (symbol? t))
+
+(define (eval-arith e m)
+  (cond [(true? e) true]
+        [(false? e) false]
+        [(var? e) (get-mem e m)]
+        [(op? e)
+         (apply
+          (op->proc (op-op e))
+          (map (lambda (x) (eval-arith x m))
+               (op-args e)))]
+        [(const? e) e]))
+
+;; syntax of commands
+
+(define (assign? t)
+  (and (list? t)
+       (= (length t) 3)
+       (eq? (second t) ':=)))
+
+(define (assign-var e)
+  (first e))
+
+(define (assign-expr e)
+  (third e))
+
+(define (if? t)
+  (tagged-tuple? 'if 4 t))
+
+(define (if-cond e)
+  (second e))
+
+(define (if-then e)
+  (third e))
+
+(define (if-else e)
+  (fourth e))
+
+(define (while? t)
+  (tagged-tuple? 'while 3 t))
+
+(define (while-cond t)
+  (second t))
+
+(define (while-expr t)
+  (third t))
+
+(define (block? t)
+  (list? t))
+
+;; state
+
+(define (res v s)
+  (cons v s))
+
+(define (res-val r)
+  (car r))
+
+(define (res-state r)
+  (cdr r))
+
+;; psedo-random generator
+
+(define initial-seed
+  123456789)
+
+(define (rand max i)
+  ;(display max)
+  ;(display " ")
+  ;(display i)
+  ;(display "\n")
+  (let ([v (modulo (+ (* 1103515245 i) 12345) (expt 2 32))])
+    (res (modulo v max) v)))
+
+;; WHILE interpreter
+
+(define (old-eval e m)
+  (cond [(assign? e)
+         (set-mem
+          (assign-var e)
+          (eval-arith (assign-expr e) m)
+          m)]
+        [(if? e)
+         (if (eval-arith (if-cond e) m)
+             (old-eval (if-then e) m)
+             (old-eval (if-else e) m))]
+        [(while? e)
+         (if (eval-arith (while-cond e) m)
+             (old-eval e (old-eval (while-expr e) m))
+             m)]
+        [(block? e)
+         (if (null? e)
+             m
+             (old-eval (cdr e) (old-eval (car e) m)))]))
+
+(define (eval e m seed)
+  (old-eval e m))
+
+(define (run e)
+  (eval e empty-mem initial-seed))
+
+;;
+
+(define fermat-test
+  '((while (< 0 k)
+           ((a := (+ 2 (rand (- n 4))))
+            (b := (- n 2))
+            (c := a)
+            (while (< 0 b)
+                   ((a := (mod (* a c) n))
+                    (b := (- b 1))))
+            (if (not (= a 1))
+                (k := -10)
+                (k := (- k 1)))))
+    (if (and (= k -10) (not (= n 2)))
+        (composite := true)
+        (composite := false))))
+
+(define (probably-prime? n k) ; check if a number n is prime using
+  ; k iterations of Fermat's primality
+  ; test
+  (let ([memory (set-mem 'k k
+                         (set-mem 'n n empty-mem))])
+    (not (get-mem
+          'composite
+          (eval fermat-test memory initial-seed)))))
+
+
+(define (proba-zadA do)
+  (if (= do 0)
+      0
+      (cons (cons do (probably-prime? do 10)) (proba-zadA (- do 1)))))
+(proba-zadA 100)
+
+(define (eval-B e m seed)
+  (old-eval e (set-mem 'stan seed m)))
+
+(define fermat-test-B
+  '((stan := 18392)
+    (while (< 0 k)
+           ((w := (rand1 (- n 4) stan))
+            (stan := (cdr w))
+            (a := (+ (car w) 2))
+            (b := (- n 2))
+            (c := a)
+            (while (< 0 b)
+                   ((a := (mod (* a c) n))
+                    (b := (- b 1))))
+            (if (not (= a 1))
+                (k := -10)
+                (k := (- k 1)))))
+    (if (or (= k -10) (= n 2))
+        (composite := true)
+        (composite := false))))
+
+(define (probably-prime?-B n k) ; check if a number n is prime using
+  ; k iterations of Fermat's primality
+  ; test
+  (let ([memory (set-mem 'k k
+                         (set-mem 'n n empty-mem))])
+    (not (get-mem
+          'composite
+          (eval-B fermat-test-B memory initial-seed)))))
+
+(define (proba-zadB do)
+  (if (= do 4)
+      0
+      (cons (cons do (probably-prime?-B do 10)) (proba-zadB (- do 1)))))
+(proba-zadB 100)
+
+(define (na-prawde x)
+  (define (iter i)
+    (if (> (sqr i) x)
+        true
+        (if (zero? (modulo x i))
+            false
+            (iter (+ i 2)))))
+  (if (zero? (modulo x 2))
+      false
+      (iter 3)))
+(define (porownanie do)
+  (if (= do 4)
+      (cons null null)
+      (let ([next (porownanie (- do 1))]
+            [B (probably-prime?-B do 10)]
+            [A (probably-prime? do 10)])
+        (if (and (eq? A B) A B)
+            (cons (cons do (car next)) (cdr next))
+            (if (and (not (eq? A B)) (or A B))
+                (cons (car next) (cons do (cdr next)))
+                next))
+        )))
+(porownanie 1000)
+(define (porownanie2 do)
+  (if (= do 4)
+      (list null null null)
+      (let ([next (porownanie2 (- do 1))]
+            [T (na-prawde do)]
+            [B (probably-prime?-B do 10)]
+            [A (probably-prime? do 10)])
+        ;(display next)
+        ;(display "\n")
+        (if T
+            (list (cons do (car next)) (cadr next) (caddr next))
+            (if A
+                (list (car next) (cons do (cadr next)) (caddr next))
+                (if B
+                    (list (car next) (cadr next) (cons do (caddr next)))
+                    next))))))
+(porownanie2 1000)

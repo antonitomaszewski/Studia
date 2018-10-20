@@ -1,0 +1,139 @@
+#lang racket
+
+(require racklog)
+
+(define %my-append
+  (%rel (x xs ys zs)
+        [(null ys ys)]
+        [((cons x xs) ys (cons x zs))
+         (%my-append xs ys zs)]))
+
+(define %my-member
+  (%rel (x xs y)
+        [(x (cons x xs))]
+        [(y (cons x xs))
+         (%my-member y xs)]))
+
+(define %select
+  (%rel (x xs y ys)
+        [(x (cons x xs) xs)]
+        [(y (cons x xs) (cons x ys))
+         (%select y xs ys)]))
+
+;; prosta rekurencyjna definicja
+(define %simple-length
+  (%rel (x xs n m)
+        [(null 0)]
+        [((cons x xs) n)
+         (%simple-length xs m)
+         (%is n (+ m 1))]))
+
+;; test w trybie +- (działa)
+(%find-all (a) (%simple-length (list 1 2) a))
+;; test w trybie ++ (działa)
+(%find-all () (%simple-length (list 1 2) 2))
+;; test w trybie -+ (1 odpowiedź, pętli się)
+(%which (xs) (%simple-length xs 2))
+;; test w trybie -- (nieskończona liczba odpowiedzi)
+(%which (xs a) (%simple-length xs a))
+
+;; definicja zakładająca, że długość jest znana
+(define %gen-length
+  (%rel (x xs n m)
+        [(null 0) !]
+        [((cons x xs) n)
+         (%is m (- n 1))
+         (%gen-length xs m)]))
+;; test w trybie ++ (działa)
+(%find-all () (%gen-length (list 1 2) 2))
+;; test w trybie -+ (działa)
+(%find-all (xs) (%gen-length xs 2))
+
+;;ćwiczenie 3
+(%which (xs ys) (%my-append xs xs ys))
+(%more)
+(%more)
+(%which (x) (%and (%my-member x (list 1 2 3 4 5))
+                  (%not (%my-member x (list 1 2 3)))))
+(%more)
+(%more)
+(%which (xs) (%my-append (list 1 2 3) xs (list 1 2 3 4 5)))
+
+(%which (xs) (%= (append '(1 2 3) xs) '(1 2 3 4 5)))
+;;(%which (xs) (%= (append xs '(3)) '(1 2 3)))
+;;ćwiczenie 4
+(%which (x y) (%append x y (list 1 2)))
+(%more)
+(%more)
+(%more)
+
+;;ćwiczenie 5
+;;x -> 'b || (list 'a 'b)
+(%which (x) (%is (list 'a x) (list 'a 'b)))
+;;x -> 'a y -> (list 'g 'a) || (list 'f (list 'g 'a) 'a)
+
+(%which (x y) (%is (list 'f (list 'g x) x) (list 'f y 'a)))
+;;nie da sie
+(%let (x) (%which () (%= x (list 'f x))))
+(%which (x) (%is x (list 'f x)))
+;;x -> (list 'g 'g) y -> 'g || (list 'g 'g)
+(%which (x y) (%is x (list 'g y)))
+;;
+
+
+;;ćwicznie 6
+(define %sublist
+  (%rel (xs ys x)
+        [(null null)]
+        [((cons x xs) (cons x ys))
+         (%sublist xs ys)]
+        [(xs (cons x ys))
+         (%sublist xs ys)]))
+
+(%which () (%sublist (list 1 3 5) (list 1 2 3 4 5 6)))
+(%which () (%sublist (list 1 2 3 4 5 6) (list 1 2 3 4 5 6)))
+(%which () (%sublist (list 1 3 15) (list 1 2 3 4 5 6)))
+(%which () (%sublist (list 1 5 2) (list 1 2 3 4 5 6)))
+(%find-all (xs) (%sublist xs (list 1 2 3)))
+
+;;ćwiczenie 7
+(%which (x) (%select x (list 1 2 3 4) (list 1 3 2)))
+
+(define %perm
+  (%rel (xs ys zs x)
+        [(null null)]
+        [((cons x xs) ys)
+        (%select x ys zs)
+        (%perm xs zs)]))
+
+(%which () (%perm (list 1 2 3 4) (list 2 1 4 3)))
+(%which () (%perm (list 1 2 2 3 4) (list 1 2 3 4)))
+(%which () (%perm (list 1 2 2 3 4) (list 1 2 3 4 2 4)))
+
+;;ćwiczenie 8
+
+(define (list->num xs)
+  (define (helper xs n)
+    (if (null? xs)
+        n
+        (helper (cdr xs) (+ (* n 10) (car xs)))))
+  (helper xs 0))
+        
+
+(define riddle
+  (lambda ()
+    (%let (xs a b)
+          (%which (d e m n o r s y)
+                  (%and (%sublist xs (list 1 2 3 4 5 6 7 8 9 0))
+                        (%simple-length xs 8)
+                        (%perm (list d e m n o r s y) xs)
+                        (%=/= s 0)
+                        (%=/= m 0)
+                        (%is a (+ (list->num (list s e n d))
+                                  (list->num (list m o r e))))
+                        (%is b (list->num (list m o n e y)))
+                        (%= a b))))))
+(riddle)
+
+ 
+
