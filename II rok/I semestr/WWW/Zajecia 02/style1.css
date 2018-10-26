@@ -1,0 +1,24 @@
+@import url(style2.css);
+
+/* p {
+  background-color: inherit;
+  color: Gray;
+}
+
+div {
+  background-color: Cyan;
+  color: Grey !important;
+  font-family: cursive;
+  font-size: 12px;
+}
+
+h3 {
+  padding: 30px;
+} */
+
+p {
+  color: red;
+}
+
+/*
+!important > w tagu > id > klasy, pseudo klasy, inne atrybuty >  tagi, pseudo elementy */
