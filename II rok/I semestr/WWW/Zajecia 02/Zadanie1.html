@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <style>
+      /* p {
+        color: DarkCyan !important;
+        background-color: AntiqueWhite;
+      }
+
+      div {
+        color: Crimson;
+      }
+
+      h2 {
+        color: Brown;
+      } */
+
+      p {
+        color: green !important;
+      }
+
+      div {
+        color: blue;
+      }
+
+      h2 {
+        color: red;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <h1> H1 </h1>
+    <h2> H2 </h2>
+    <div> DIV </div>
+    <p> P </p>
+    <h3 style="color: lightblue;"> H3 </h3>
+
+
+    <div>
+      <h1>
+        <p>
+          <font color="red">
+            Div > H1 > P
+          </font>
+        </p>
+      </h1>
+    </div>
+    <div>
+      <p>
+        <h1>
+          Div > P > H1
+        </h1>
+      </p>
+    </div>
+    <h1>
+      <div>
+        <p>
+          H1 > Div > P
+        </p>
+      </div>
+    </h1>
+    <h1>
+      <p>
+        <div>
+          H1 > P > Div
+        </div>
+      </p>
+    </h1>
+
+    <p>
+      <div>
+        <h1>
+          P > Div > H1
+        </h1>
+      </div>
+    </p>
+    <p>
+      <h1>
+        <div>
+          P > H1 > Div
+        </div>
+      </h1>
+    </p>
+
+</html>
+
+
+
+<!-- bezpośrednio w tagu >> (important wypycha max tutaj, jak wiele importantów to tak jakby się znoszą) >
+w dokumencie > w zaimportowanym css > w zaimportowanym do naszego css -->

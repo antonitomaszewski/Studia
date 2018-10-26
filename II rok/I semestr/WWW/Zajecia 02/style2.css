@@ -1,0 +1,17 @@
+/* @import "style1.css";
+
+p {
+  color: SlateBlue;
+}
+
+div {
+  color: Violet !important;
+} */
+
+p {
+  color: blue;
+}
+
+div {
+  color: red;
+}

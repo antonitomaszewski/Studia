@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      p:first-of-type {
+        background-color: #0000FF;
+        color: #A19B29;
+      }
+
+      div:last-of-type {
+        background-color: #FFF009;
+        color: #0C0917;
+      }
+
+      summary:only-of-type {
+        font-style: oblique;
+        font-family: monospace;
+      }
+
+      p:nth-child(even) {
+        font-weight: bold;
+      }
+
+      sub:nth-last-child(n) {
+        font-variant: small-caps;
+      }
+
+      /* wczytuje zgodnie z kolejnością  */
+      div:nth-last-child(1) {
+        font-style: normal;
+      }
+
+
+      div:nth-of-type(1) {
+        font-style: italic;
+      }
+
+      span:last-child {
+        font-weight: lighter;
+        font-variant: small-caps;
+        font-stretch: extra-expanded;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <footer align="center">
+      Selektory: type oraz child
+    </footer>
+
+    <details>
+      <summary>
+        Summary
+      </summary>
+      <!-- <summary>
+        Drugie Summary
+      </summary> -->
+      <p>
+        teraz wydzisz różne szczegółły i szczególiki
+      </p>
+      <p>
+        <cite>Lat temu z górą trzysta <br />
+          Mnich Brandon - archiwista <br />
+          Opisał po łacinie<br />
+          Na żółtym pergaminie<br />
+          Przedziwne swe podróże.<br />
+          Ja światu się przysłużę<br />
+          I to, co pisał mnich,<br />
+          Przekażę w wierszach tych. <br /></cite>
+        ~ Jan Brzechwa "Ariadna"
+        <sub>małe literki</sub>
+        <sup>to te są wielkie??</sup>
+      </p>
+
+    </details>
+    <!-- FIRST OF TYPE -->
+    <!-- <div> -->
+    <p>
+      Pierwszy paragraf
+    </p>
+    <p>
+      Drugi Paragraf
+    </p>
+    <div>
+      <p>
+        Pierwszy w divie
+      </p>
+      <p>
+        Drugi w divie
+      </p>
+    </div>
+    <!-- </div> -->
+
+
+    <span>
+      Początek spana
+      <p>
+        taki sopie paragraf w spanie
+      </p>
+      Koniec Spana
+    </span>
+
+
+  </body>
+
+</html>

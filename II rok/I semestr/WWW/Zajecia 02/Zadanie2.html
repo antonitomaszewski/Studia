@@ -1,0 +1,55 @@
+<!-- Jak najeżdżam myszką na link w googlu to się podkreśla
+oraz odwiedzony link jest w innym kolorze niż nieodwiedzony
+np. fiolet, i niebieski -->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="Zadanie2.css">
+    <style>
+      /* nie odwiedzony jeszcze link */
+      a:link {
+        color: Aquamarine;
+      }
+
+      /* odwiedzony link */
+      a:visited {
+        caret-color: auto;
+        color: inherit;
+      }
+
+      /* myszka najeżdża na link */
+      a:hover {
+        color: CadetBlue;
+        font-size: 12px;
+        font-family: fantasy;
+      }
+
+      /* naciśnięty link */
+      a:active {
+        color: CornflowerBlue;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <b class="main">
+        Tekst by sprawdzic tag.nazwaklasy oraz .nazwaklasy <br>
+        <a href="tint-lista02.pdf" target="_self">
+          Link do mojego podpisu
+        </a>
+      </b>
+    </p>
+    <p lang="ay" class="main">
+      Kolejność a:link, a:visited .> a.hover .> a:active
+    </p>
+
+    <p class="main main2">
+      Sprawdzam wieloklasowośc (Kolejność)
+    </p>
+  </body>
+
+</html>

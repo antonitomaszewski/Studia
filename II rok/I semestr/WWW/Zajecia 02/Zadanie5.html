@@ -1,0 +1,50 @@
+<!-- EMPTY, NOT, ROOT, SELECTION -->
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      p:empty {
+        background-color: HotPink;
+        width: 99px;
+        height: 107px;
+      }
+
+      :not(div) {
+        color: Azure;
+        background-color: SlateGrey;
+        /* width: 300px;
+        height: 100px; */
+      }
+
+      :root {
+        background: #6A5ACD;
+      }
+
+      ::selection {
+        color: #000FF0;
+        background-color: #FF0000;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <p></p>
+    <p>
+      Niepusty paragraf
+    </p>
+    <div>
+      <p>
+        Niepusty paragraf, dziecko diva
+      </p>
+    </div>
+    <strong>
+      Strong
+    </strong>
+    <br>
+    <b>Bold</b>
+
+  </body>
+
+</html>

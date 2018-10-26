@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      a:active, h1:active, p:active {
+        background-color: Lime;
+      }
+
+      option:checked, input:checked {
+        background-color: Lime;
+        width: 190px;
+        height: 100px;
+      }
+      input[type=text]:disabled {
+        background-color: Grey;
+      }
+      input[type=text]:enabled {
+        background-color: Lavender;
+      }
+      p:empty {
+        background-color: HotPink;
+        width: 99px;
+        height: 107px;
+      }
+      p:first-child {
+        background-color: MediumAquaMarine;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <a href="tint-lista02.pdf"> Link do tinta</a>
+    <h1>aktywny h1</h1>
+    <p>Aktywny P</p>
+
+    <form>
+      <input type="checkbox" value="tint">
+      TINT
+      </input>
+
+      Autko: <input type="text" value="MBW" /> <br />
+      <p></p>
+      Kierowca: <input type="text" disabled="disabled" value="fli-plaj" />
+    </form>
+    <select>
+      <option value="BWM">
+        becia
+      </option>
+    </select>
+
+
+  </body>
+
+</html>

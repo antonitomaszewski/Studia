@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      /* DESCENDANT POTOMEK Każdy potomek diva typu p */
+      div p {
+        background-color: Blue;
+      }
+
+      /* CHILD, DZIECKO Każdy w divie, na pierwszym stopniu głębokości */
+      div>p {
+        background-color: Red;
+      }
+
+      /* ADJACENT, ŻONA/KOCHANKA Sąsiadujące z divem */
+      div+p {
+        background-color: Pink;
+      }
+
+      /* GENERAL, TO SAMO POKOLENIE Na tym samym poziomie co dyv -> rodzeństwo */
+      div~p {
+        background-color: yellow;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- > -->
+    <div>
+      <p>Paragraph 1 in the div.</p>
+      <p>Paragraph 2 in the div.</p>
+      <span>
+        <p>Paragraph 3 in the div.</p>
+      </span> <!-- not Child but Descendant -->
+    </div>
+
+    <p>Paragraph 4. Not in a div.</p>
+    <p>Paragraph 5. Not in a div.</p>
+
+    <!-- + -->
+    <p>Paragraph 3. Not in a div.</p>
+    <div>
+      <p>Paragraph 1 in the div.</p>
+      <p>Paragraph 2 in the div.</p>
+    </div>
+
+    <p>Paragraph 4. Not in a div.</p>
+
+  </body>
+
+</html>

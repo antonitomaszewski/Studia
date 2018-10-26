@@ -1,0 +1,21 @@
+p, a {
+  font-style: italic;
+  color: DarkKhaki;
+}
+
+.main {
+  text-align: center;
+  column-fill: balance;
+  /* background-image: url(""); */
+  padding: left;
+}
+
+p.main {
+  text-align: right;
+}
+
+.main2 {
+  color: black;
+  background-color: Tomato;
+  display: nones;
+}
