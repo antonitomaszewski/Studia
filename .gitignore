@@ -1,0 +1,11 @@
+# komentarz - ta linia jest ognorowana
+# żadnych plików .a
+*.a
+# ale uwzględniaj lib.a pomimo ignorowania .a w linijce powyżej
+!lib.a
+# ignoruj plik TODO w katalogu głównym, ale nie podkatalaog/TODO
+/TODO
+#ignoruj wszystkie pliki znajdujące się w katalogu build/
+build/
+#ingorij doc/notatki.txt, ale nie doc/server/arch.txt
+doc/*.txt

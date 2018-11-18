@@ -1,0 +1,19 @@
+{
+  "name": "weppo",
+  "version": "1.0.0",
+  "description": "zadania z wybranych elementow praktyki projektowania oprogramowania",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Studia"
+  },
+  "keywords": [
+    "weppo",
+    "javascript"
+  ],
+  "author": "Antoni Tomaszewski",
+  "license": "MIT"
+}
