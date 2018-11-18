@@ -1,0 +1,102 @@
+<!-- https://techforluddites.com/replacing-list-bullets-with-images-using-css/ -->
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+      ul.kropka {
+        /* background: url('kropka.jpg') no-repeat left top; */
+        list-style-image: url('kropka.jpg');
+        /* height: 60px; */
+        padding-left: 500px;
+        font-size: 500px;
+        /* padding-top: 10px; */
+      }
+
+      ul.kropka3 {
+        background-image: url('kropka.jpg');
+        padding-left: 500px;
+        font-size: 500px;
+      }
+
+      /* ul::before {
+        background-image: url(kropka.jpg);
+      } */
+
+      /* #dwa {}
+
+      #dwa li::before {
+        content: url(kropka.jpg);
+        background: Aquamarine;
+      } */
+      #dwa {
+        font-size: 500px;
+      }
+
+      p::before {
+        content: url(kropka.jpg);
+      }
+
+      h1 {
+        font-size: 500px;
+      }
+
+      ul.trzy {
+        list-style: none;
+        color: red;
+        background-image: url('kropka.jpg');
+        margin-right: 3000px;
+      }
+
+      li.trzy1 {
+        font-size: 250px;
+        /* padding-bottom: 1000px; */
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <ul class="kropka">
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Coca Cola</li>
+    </ul>
+
+
+    <h1> BEFORE: </h1>
+    <p id="dwa">
+      befor 1
+    </p>
+    <p id="dwa">
+      befor 2
+    </p>
+    <!-- <li class="trzy">
+      lista 1
+    </li>
+    <li class="trzy">
+      lsita 2
+    </li> -->
+    <!--
+    <ul class="kropka3">
+      <li>
+
+        piłka nożna
+      </li>
+    </ul> -->
+    <h1> tło: </h1>
+    <ul class="trzy">
+      <li class="trzy1">
+        tło 1
+      </li>
+      <li class="trzy1">
+        tło 2
+      </li>
+    </ul>
+
+
+  </body>
+
+</html>

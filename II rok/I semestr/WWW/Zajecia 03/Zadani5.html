@@ -1,0 +1,49 @@
+<!-- https://techforluddites.com/replacing-list-bullets-with-images-using-css/ -->
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+      .box {
+        /* margin: 10px; */
+        border: 20px solid grey;
+        background: orange;
+        /* padding: 30px; */
+        width: 400px;
+        height: 300px;
+        color: red;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 260px;
+        /* text-align: center; */
+      }
+
+      ul.kropka {
+        /* background: url('kropka.jpg') no-repeat left top; */
+        list-style-image: url('kropka.jpg');
+        list-style-position: outside;
+        /* left: 500px; */
+        padding-left: 500px;
+        /* padding-top: 100px; */
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+
+      <ul class="kropka">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+      </ul>
+
+    </div>
+
+  </body>
+
+</html>

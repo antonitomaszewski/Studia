@@ -1,0 +1,85 @@
+<!-- https://www.w3schools.com/css/css_positioning.asp -->
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+      div.box {
+        /* margin: 10px; */
+        border: 20px solid grey;
+        background: orange;
+        /* padding: 30px; */
+        width: 400px;
+        height: 300px;
+        color: red;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 260px;
+        /* text-align: center; */
+      }
+
+      /* najwyczajniejsze, daje się ponieść stronie */
+      div.static {
+        position: static;
+        border-radius: 100px;
+        border: 10px solid Aquamarine;
+      }
+
+      div.relative {
+        position: relative;
+        left: -50px;
+        bottom: 50px;
+        border-radius: 100px;
+        border: 10px solid Aquamarine;
+      }
+
+      div.absolute {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        border-radius: 100px;
+        border: 10px solid Aquamarine;
+      }
+
+      div.ustalony {
+        position: fixed;
+        bottom: 10px;
+        right: 100px;
+        border-radius: 100px;
+        border: 10px solid Aquamarine;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="static">
+        teskst statyczny
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="relative">
+        teskt relatywny od lewej i od dołu
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="absolute">
+        teskt absolutny
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="ustalony">
+        teskt ustalon=y
+      </div>
+    </div>
+
+  </body>
+
+</html>
