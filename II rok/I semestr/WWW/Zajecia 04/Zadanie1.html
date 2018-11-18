@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* div {
+        border-color: blue
+      } */
+    </style>
+  </head>
+  <body>
+      <script>
+          var div = document.createElement("div");
+          div.id = "main";
+          div.innerHTML = "tekscik";
+          document.body.append(div);
+          // div.innerHTML = "Jestem divem";
+          // document.getElementById("main").appendChild(div);
+          var id = "menu";
+          var content = "antoni tomaszewski";
+          var div2 = '<div id='+id+'>'+content +'</div>';
+          document.getElementsByTagName("body").innerHTML += div2;
+    
+    
+          // var board;
+          // board= document.createElement("div");
+          // board.id = "mainBoard";
+          // board.style.cssText = "position:fixed;height:100px;width:100px;background:#ddd;border-color: blue;";
+          // // board.style.cssText += "";
+          // document.getElementById("main").append(board);
+    
+          document.body.innerHTML += '<div id="qw">qwer</div>';
+
+          // document.write(Date());
+          </script>
+
+
+  </body>
+</html>

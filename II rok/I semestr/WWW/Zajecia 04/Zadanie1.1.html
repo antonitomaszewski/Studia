@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* #r {
+      color: red;
+    }
+
+    #g {
+      color: green;
+    }
+
+    #b {
+      color: brown;
+    } */
+  </style>
+</head>
+
+<body>
+  <div id="content"></div>
+  <script>
+    // var colors = require('colors');
+    document.body.innerHTML += '<div id="menu"> to jest div o id=menu </div>';
+    var men = document.getElementById("menu");
+    men.style.cssText = "width: 190px; height: 100px;";
+    men.style.border = "5px solid blue";
+
+    function fun(id) {
+      document.getElementById("menu").style.borderColor = id.style.color;
+    }
+
+    var linka = '<a id="r" href="plik.jpg" onclick="fun(this)" target="_blank"> czerwień</a>';
+
+    var linkb = '<a id="g" href="plik.jpg" onclick="fun(this)" target="_blank"> zieleń</a>';
+
+    var linkc = '<a id="b" href="" onclick="fun(this)" target="_blank"> brąz</a>';
+
+    document.getElementById("menu").innerHTML += linka + linkb + linkc;
+    document.getElementById("r").style.color = "red";
+    document.getElementById("g").style.color = "green";
+    document.getElementById("b").style.color = "brown";
+    // document.getElementById("r").style.color = "yellow";
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!-- // document.getElementById('menu').onclick = changeColor;
+
+// function myFunction() {
+// document.getElementById("demo").innerHTML = "Hello World";
+// }
+
+// function changeColor() {
+// var c = document.onclick.color;
+// // document.body.style.backgroundColor = document.getElementById()
+// // return false;
+// }
+// function getit(a) {
+// document.getElementById("menu").background += this.color;
+// console.log(this.cssText);
+// // return false;
+// }
+//
+
+
+
+// var elements = document.getElementsByTagName('a');
+// for (let i = 0, len = elements.length; i < len; i++) { // elements[i].onclick=function() { // document.getElementById("menu").style.border +=this.color; // console.log(this.color); // } // } -->
+
+<!--
+
+    // function funa(id) {
+    //   document.getElementById("menu").style.borderColor = "red";
+    //   // document.getElementById("menu").style.borderColor = id.style.color;
+    //   // document.getElementById("menu").style.setAttribute(border, id.style.color);
+    //   // document.getElementById("menu").style.borderColor += document.getElementsByTagName(p).getElementById(id).style.color;
+    //   // console.log('i am this color'.id.style.color);
+    // }
+
+
+    //
+    // function funb(id) {
+    //   // document.getElementById("menu").style.borderColor = "green";
+    //   document.getElementById("menu").style.borderColor = id.style.color;
+    // }
+
+    //
+    // function func(id) {
+    //   document.getElementById("menu").style.borderColor = "brown";
+    // } -->

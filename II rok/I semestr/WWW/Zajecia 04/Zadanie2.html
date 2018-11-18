@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function validateForm(form) {
+              var elems = document.getElementsByTagName("input");
+
+
+              return true;
+            }
+
+            </script>
+
+</head>
+
+<body>
+  <form id="fo" name="formularz" action="" onsubmit="return validateForm(this)">
+    Nr konta : <input name="nrKonta"> </br>
+    Pesel : <input name="pesel"> </br>
+    Data urodzenia : <input name="data"> </br>
+    E-mail : <input name="email"> </br>
+    <input type="submit" value="Potwierdź" onclick="return validateForm(document.forms[0])" />
+  </form>
+</body>
+
+</html>
