@@ -15,5 +15,6 @@
     "javascript"
   ],
   "author": "Antoni Tomaszewski",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

@@ -1,12 +1,10 @@
-(() => 'use strict')();
+// (() => 'use strict')();
 
 function createFs(n) {
   var fs = [];
   for (var i = 0; i < n; i++) {
-    console.log("W pętli: i = ", i);
     fs[i] =
       function() {
-        console.log("W funkcji i = ", i);
         return i;
       };
   }
@@ -26,13 +24,9 @@ function createMyFs(n) {
   var fs = [];
 
   for (var i = 0; i < n; i++) {
-    fs[i] = (() => {
-      var j = i;
-
-      return function() {
-        return j;
-      }
-    })();
+    (i => {
+      fs[i] = (() => i);
+    })(i);
   }
   return fs;
 }
@@ -40,5 +34,5 @@ function createMyFs(n) {
 var myfs1 = createMyFs(10);
 console.log(myfs1[0]());
 // console.log(myfs1[0]()());
-// console.log(myfs1[2]()());
-// console.log(myfs1[7]());
+console.log(myfs1[2]());
+console.log(myfs1[7]());
