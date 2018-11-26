@@ -1,6 +1,7 @@
 # komentarz - ta linia jest ognorowana
 # żadnych plików .a
 *.a
+*.out
 # ale uwzględniaj lib.a pomimo ignorowania .a w linijce powyżej
 !lib.a
 # ignoruj plik TODO w katalogu głównym, ale nie podkatalaog/TODO
