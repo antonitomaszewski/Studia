@@ -17,12 +17,12 @@ let rec map_append f xs =
 
 let rec _reverse xs result =
   match xs with
-    | [] -> result
-    | h :: t -> _reverse t (h :: result)
+  | [] -> result
+  | h :: t -> _reverse t (h :: result)
 
 let reverse xs = _reverse xs [];;
 
 let rec length (xs : 'a list) : int =
   match xs with
-    | [] -> 0
-    | _::tail -> 1 + (length tail);;
+  | [] -> 0
+  | _::tail -> 1 + (length tail);;

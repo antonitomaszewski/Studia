@@ -2,6 +2,7 @@
 # żadnych plików .a
 *.a
 *.out
+.merlin
 # ale uwzględniaj lib.a pomimo ignorowania .a w linijce powyżej
 !lib.a
 # ignoruj plik TODO w katalogu głównym, ale nie podkatalaog/TODO
