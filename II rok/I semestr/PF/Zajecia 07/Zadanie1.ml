@@ -27,3 +27,22 @@ for i = 0 to 10 do
   print_newline ()
 done
 ;;
+
+type 'a fix = Fix of ('a fix -> 'a)
+(* let y = fun f -> ((fun x a  : 'a fix -> f (x (Fix x)) a) (fun x a -> f (x x) a)) *)
+
+let y t =
+  let p (Fix f) x = t (f (Fix f)) x
+  in p (Fix p)
+
+let fact n =
+  let t_fact f x =
+    if x=0
+    then 1
+    else x * (y f (x-1))
+  in t_fact (fun x -> x) n
+
+;;
+fact 4;;
+
+;;
