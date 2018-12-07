@@ -9,5 +9,6 @@
 /TODO
 #ignoruj wszystkie pliki znajdujące się w katalogu build/
 build/
+II rok/I semestr/WEPPO/node_modules/
 #ingorij doc/notatki.txt, ale nie doc/server/arch.txt
 doc/*.txt
