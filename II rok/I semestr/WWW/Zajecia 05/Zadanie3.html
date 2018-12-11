@@ -2,110 +2,113 @@
 <!-- getStyle popatrzyć -->
 <html>
 
-  <head>
-    <style>
-      div.kolory {
-        left: 0;
-        /* position: fixed; */
-        /* height: 100%;
+    <head>
+        <style>
+            div.kolory {
+                left: 0;
+                /* position: fixed; */
+                /* height: 100%;
         width: 50%; */
-        /* z-index: 1;
+                /* z-index: 1;
         top: 0;
         overflow-x: hidden;
         padding-top: 20px; */
-      }
+            }
 
-      div.rysunek {
-        right: 0;
-        height: 100%;
-        width: 50%;
-        position: fixed;
-        /* z-index: 1;
+            div.rysunek {
+                right: 0;
+                height: 100%;
+                width: 50%;
+                position: fixed;
+                /* z-index: 1;
         top: 0;
         overflow-x: hidden;
         padding-top: 20px; */
-      }
+            }
 
 
 
-      div.kolorek {
-        width: 100px;
-        height: 100px;
-        border: 10px solid #000;
-      }
+            div.kolorek {
+                width: 100px;
+                height: 100px;
+                border: 10px solid #000;
+            }
 
-      div.rysuneczek {
-        width: 200px;
-        height: 100px;
-        border: 1px solid #000;
-      }
+            div.rysuneczek {
+                width: 200px;
+                height: 100px;
+                border: 1px solid #000;
+            }
 
-    </style>
-
-
-    <script>
-      function allowDrop(ev) {
-        ev.preventDefault();
-      }
-
-      function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-      }
-
-      function drop(ev) {
-        var data = ev.dataTransfer.getData("text");
-        ev.target.style.background = document.getElementById(data).style.background;
+        </style>
 
 
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
 
-        // console.log(document.getElementById(data));
-        // console.log(ev.target.id);
-        // ev.target.appendChild(document.getElementById(data));
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
 
-        // ev.target.style.background = 'yellow';
-        // document.getElementById(data).style.background = "green";
-
-        // var rc = document.getElementById(data).style.background;
-        // var kc = ev.target.style.background;
+            function drop(ev) {
+                var data = ev.dataTransfer.getData("text");
+                ev.target.style.background = document.getElementById(data).style.background;
 
 
 
-        // ev.target.style.background = data.style.background;
-        // document.get
+                // console.log(document.getElementById(data));
+                // console.log(ev.target.id);
+                // ev.target.appendChild(document.getElementById(data));
 
-      }
+                // ev.target.style.background = 'yellow';
+                // document.getElementById(data).style.background = "green";
 
-    </script>
-
-  </head>
-
-  <body>
-    <div class="rysunek">
-
-      <div class="rysuneczek" id="rysunek1" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-      <div class="rysuneczek" id="rysunek2" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-      <div class="rysuneczek" id="rysunek3" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-      <div class="rysuneczek" id="rysunek4" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-      <div class="rysuneczek" id="rysunek5" ondrop="drop(event)" ondragover="allowDrop(event)">
-      </div>
-    </div>
+                // var rc = document.getElementById(data).style.background;
+                // var kc = ev.target.style.background;
 
 
-    <div class="kolory">
-      <div class="kolorek" id="kolor1" draggable="true" ondragstart="drag(event)" style="background: red;">
-      </div>
-      <div class="kolorek" id="kolor2" draggable="true" ondragstart="drag(event)" style="background: green;">
-      </div>
-      <div class="kolorek" id="kolor3" draggable="true" ondragstart="drag(event)" style="background: blue;">
-      </div>
-      <div class="kolorek" id="kolor4" draggable="true" ondragstart="drag(event)" style="background: brown;">
-      </div>
 
-    </div>
-  </body>
+                // ev.target.style.background = data.style.background;
+                // document.get
+
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+        <div class="rysunek">
+            <br>
+            <h1> Rysunek do pokolorowania </h1>
+            <div class="rysuneczek" id="rysunek1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+            <div class="rysuneczek" id="rysunek2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+            <div class="rysuneczek" id="rysunek3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+            <div class="rysuneczek" id="rysunek4" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+            <div class="rysuneczek" id="rysunek5" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+
+
+        <div class="kolory">
+            <br>
+            <h1> Kolory do wyboru </h1>
+            <div class="kolorek" id="kolor1" draggable="true" ondragstart="drag(event)" style="background: mistyrose;">
+            </div>
+            <div class="kolorek" id="kolor2" draggable="true" ondragstart="drag(event)" style="background: slateblue;">
+            </div>
+            <div class="kolorek" id="kolor3" draggable="true" ondragstart="drag(event)" style="background: darkgreen;">
+            </div>
+            <div class="kolorek" id="kolor4" draggable="true" ondragstart="drag(event)" style="background: yellowgreen;">
+            </div>
+
+        </div>
+    </body>
 
 </html>
