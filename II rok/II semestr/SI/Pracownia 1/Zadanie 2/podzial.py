@@ -14,7 +14,7 @@ def podzial(napis, S):
     legalne = [[]] + dobreSuffixy(napis, S)
     values = [-1 for _ in range(dlugosc+1)]
     values[0] = 0
-    D = {key: '' for key in range(dlugosc+1)}
+    D = ['' for _ in range(dlugosc+1)]
 
     for i in range(1, dlugosc+1):
         compare = lambda word : (lambda lenword : values[i-lenword] + lenword**2)(len(word))
@@ -27,11 +27,8 @@ def podzial(napis, S):
     D[dlugosc] = D[dlugosc].replace(' ', '', 1)
     return D[dlugosc]
 
-
-# podzial("abbaa", set([""]))
-
 def zpliku(namein = "panTadeusz_in.txt", nameout = "panTadeusz_out.txt", slowa = "words_for_ai1.txt"):
-    sciezka = "Desktop/Infa/Sztuczna/Pracownia_1/Zad_2/"
+    sciezka = "II rok/II semestr/SI/Pracownia 1/Zadanie 2/"
     namein = sciezka + namein
     nameout = sciezka + nameout
     fwords = open(sciezka+slowa, encoding="utf-8")
@@ -50,123 +47,3 @@ def zpliku(namein = "panTadeusz_in.txt", nameout = "panTadeusz_out.txt", slowa =
     fin.close()
 
 zpliku("ksiega1_in.txt", "ksiega1_out.txt")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-" as d".replace(' ','', 1)
-
-### TESTY
-
-napis = "abbaa"
-slowa = set(["ab", "a", "bba"])
-podzial(napis, slowa)
-
-Slowa = set(["tama", "tematy", "kapustki", "nie", "z", "nosi", "ta", "matematyka", "pustki", "nie", "znosi"])
-podzial("tamatematykapustkinieznosi", Slowa)
-
-podzial('abc', set(['ab', 'bc']))
