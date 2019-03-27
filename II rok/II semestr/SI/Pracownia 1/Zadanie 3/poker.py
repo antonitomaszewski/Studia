@@ -94,6 +94,7 @@ def podstawowy():
         blotkarskie = [b+c for b in blotki for c in kolory]
         random.shuffle(figuranckie)
         random.shuffle(blotkarskie)
+        # random.sample(xs, n) 
         flos = figuranckie[:5]
         blos = blotkarskie[:5]
 
